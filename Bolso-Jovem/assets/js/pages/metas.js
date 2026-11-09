@@ -1,0 +1,9 @@
+document.addEventListener('DOMContentLoaded',()=>{
+ const form=document.getElementById('meta-form'), listaEl=document.getElementById('metas-lista');
+ function render(){const metas=BJ.metas();listaEl.innerHTML=metas.length?metas.map(m=>{const pct=Math.min(100,Math.round(m.guardado/m.alvo*100));return `<article class="goal-card"><div class="goal-top"><div><h3>${esc(m.nome)}</h3><p class="muted">${BJ.moeda(m.guardado)} de ${BJ.moeda(m.alvo)}</p></div><button class="icon-btn danger" data-del="${m.id}">×</button></div><div class="progress"><span style="width:${pct}%"></span></div><small>${pct}% alcançado</small><form class="goal-add" data-add="${m.id}"><input name="valor" type="number" min="0.01" step="0.01" placeholder="Valor guardado" required><button class="btn btn-small btn-secondary">Adicionar</button></form></article>`}).join(''):'<p class="empty">Você ainda não criou uma meta. Que tal começar por uma?</p>';}
+ form.addEventListener('submit',e=>{e.preventDefault();const metas=BJ.metas();metas.push({id:BJ.id(),nome:form.nome.value.trim(),alvo:Number(form.alvo.value),guardado:0});BJ.salvarMetas(metas);form.reset();render();});
+ listaEl.addEventListener('click',e=>{const b=e.target.closest('[data-del]');if(b&&confirm('Excluir esta meta?')){BJ.salvarMetas(BJ.metas().filter(m=>m.id!==b.dataset.del));render();}});
+ listaEl.addEventListener('submit',e=>{const f=e.target.closest('[data-add]');if(!f)return;e.preventDefault();const metas=BJ.metas(),m=metas.find(x=>x.id===f.dataset.add);if(m){m.guardado+=Number(new FormData(f).get('valor'));BJ.salvarMetas(metas);render();}});
+ render();
+});
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
