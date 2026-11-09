@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Investimentos | Bolso Jovem</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/dados.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="inicio.html"><span class="brand-mark">B</span><span>Bolso <b>Jovem</b><small>Seu dinheiro, suas escolhas</small></span></a>
+      <nav class="main-nav"><a class="nav-link " href="inicio.html"><span class="nav-symbol">house</span>Início</a>
+<a class="nav-link " href="movimentacoes.html"><span class="nav-symbol">arrow-left-right</span>Movimentações</a>
+<a class="nav-link " href="metas.html"><span class="nav-symbol">target</span>Metas</a>
+<a class="nav-link " href="relatorios.html"><span class="nav-symbol">chart</span>Relatórios</a>
+<a class="nav-link active" href="investimentos.html"><span class="nav-symbol">trend</span>Investimentos</a>
+<a class="nav-link " href="educacao.html"><span class="nav-symbol">book</span>Educação</a>
+<a class="nav-link " href="configuracoes.html"><span class="nav-symbol">settings</span>Configurações</a></nav>
+      <div class="sidebar-bottom"><div class="user-mini"><span class="avatar" id="avatar-inicial">V</span><span><b id="sidebar-nome">Visitante</b><small>Minha conta</small></span></div><button class="text-button" id="sair-btn" type="button">Sair</button></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div><span class="eyebrow">CONTROLE FINANCEIRO</span><h1>Investimentos</h1></div><div class="topbar-user"><span class="status-dot"></span><span id="topbar-nome">Olá!</span></div></header>
+      <section class="page-content">
+<section class="hero-card"><span class="eyebrow light">APRENDA ANTES DE INVESTIR</span><h2>Investir começa com conhecimento.</h2><p>Antes de escolher um investimento, entenda seus objetivos, o prazo em que pode deixar o dinheiro aplicado e os riscos envolvidos.</p></section>
+<div class="cards-grid">
+ <article class="info-card"><span class="info-icon">01</span><h3>Reserva de emergência</h3><p>Uma quantia separada para imprevistos. Em geral, priorize segurança e facilidade de resgate.</p></article>
+ <article class="info-card"><span class="info-icon">02</span><h3>Renda fixa</h3><p>Modalidades em que as regras de remuneração são definidas na contratação. Compare prazo, liquidez, riscos e taxas.</p></article>
+ <article class="info-card"><span class="info-icon">03</span><h3>Renda variável</h3><p>O valor pode oscilar. Existe possibilidade de ganhos e perdas, por isso exige estudo e tolerância a riscos.</p></article>
+</div><p class="tiny muted">Conteúdo educativo, não é recomendação de investimento. Verifique as condições e os riscos de cada produto.</p>
+</section>
+      <footer class="footer">Bolso Jovem · Educação financeira para começar bem.</footer>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nome = BJ.getNome() || 'Visitante';
+      document.querySelectorAll('#sidebar-nome,#topbar-nome').forEach(el => el.textContent = el.id === 'topbar-nome' ? `Olá, ${nome}` : nome);
+      const inicial = document.getElementById('avatar-inicial');
+      if (inicial) inicial.textContent = nome.trim().charAt(0).toUpperCase() || 'V';
+      document.getElementById('sair-btn')?.addEventListener('click', () => { BJ.logout(); location.href='login.html'; });
+    });
+  </script>
+  
+</body>
+</html>

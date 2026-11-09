@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Metas financeiras | Bolso Jovem</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/dados.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="inicio.html"><span class="brand-mark">B</span><span>Bolso <b>Jovem</b><small>Seu dinheiro, suas escolhas</small></span></a>
+      <nav class="main-nav"><a class="nav-link " href="inicio.html"><span class="nav-symbol">house</span>Início</a>
+<a class="nav-link " href="movimentacoes.html"><span class="nav-symbol">arrow-left-right</span>Movimentações</a>
+<a class="nav-link active" href="metas.html"><span class="nav-symbol">target</span>Metas</a>
+<a class="nav-link " href="relatorios.html"><span class="nav-symbol">chart</span>Relatórios</a>
+<a class="nav-link " href="investimentos.html"><span class="nav-symbol">trend</span>Investimentos</a>
+<a class="nav-link " href="educacao.html"><span class="nav-symbol">book</span>Educação</a>
+<a class="nav-link " href="configuracoes.html"><span class="nav-symbol">settings</span>Configurações</a></nav>
+      <div class="sidebar-bottom"><div class="user-mini"><span class="avatar" id="avatar-inicial">V</span><span><b id="sidebar-nome">Visitante</b><small>Minha conta</small></span></div><button class="text-button" id="sair-btn" type="button">Sair</button></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div><span class="eyebrow">CONTROLE FINANCEIRO</span><h1>Metas financeiras</h1></div><div class="topbar-user"><span class="status-dot"></span><span id="topbar-nome">Olá!</span></div></header>
+      <section class="page-content">
+<div class="two-column">
+ <section class="panel form-panel"><h2>Crie uma meta</h2><p class="muted">Escolha algo que você quer conquistar.</p><form id="meta-form" class="stack-form"><label>Nome da meta<input name="nome" placeholder="Ex.: Comprar um notebook" required maxlength="60"></label><label>Quanto você precisa? (R$)<input name="alvo" type="number" min="0.01" step="0.01" placeholder="1500,00" required></label><button class="btn btn-primary">Criar meta</button></form></section>
+ <section><div class="section-heading"><h2>Minhas metas</h2><p class="muted">Cada passo conta.</p></div><div id="metas-lista" class="goal-list"></div></section>
+</div>
+</section>
+      <footer class="footer">Bolso Jovem · Educação financeira para começar bem.</footer>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nome = BJ.getNome() || 'Visitante';
+      document.querySelectorAll('#sidebar-nome,#topbar-nome').forEach(el => el.textContent = el.id === 'topbar-nome' ? `Olá, ${nome}` : nome);
+      const inicial = document.getElementById('avatar-inicial');
+      if (inicial) inicial.textContent = nome.trim().charAt(0).toUpperCase() || 'V';
+      document.getElementById('sair-btn')?.addEventListener('click', () => { BJ.logout(); location.href='login.html'; });
+    });
+  </script>
+  <script src="../assets/js/pages/metas.js"></script>
+</body>
+</html>
